@@ -789,3 +789,146 @@ img { display: block; max-width: 100%; }
 .reveal-delay-1 { transition-delay: .1s; }
 .reveal-delay-2 { transition-delay: .2s; }
 .reveal-delay-3 { transition-delay: .3s; }
+
+/* ─────────────────────────────────────────────
+   MOBILE OVERRIDES  (≤ 768px)
+   Fix: hero text / KAWS overlap
+   Fix: center all buttons & CTAs
+───────────────────────────────────────────── */
+@media (max-width: 768px) {
+
+  /* ── HERO ── */
+  /* Switch to a flex column so text sits above the character */
+  .hero-sticky {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    /* canvas + overlay stay absolute behind everything */
+  }
+
+  /* Reduce scroll canvas height on mobile — animation still works */
+  .hero-outer { height: 450vh; }
+
+  /* Full-screen dark overlay (no side-gradient on mobile) */
+  .hero-overlay {
+    background: rgba(8,8,8,.60);
+  }
+
+  /* Text block: top of screen, centred, full width */
+  .hero-text {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    text-align: center;
+    width: 100%;
+    max-width: 100%;
+    padding: 110px 24px 0;   /* clear the navbar */
+    z-index: 2;
+  }
+
+  .hero-eyebrow { margin-bottom: 14px; }
+
+  .hero-title {
+    font-size: clamp(36px, 10vw, 56px);
+    margin-bottom: 28px;
+  }
+
+  /* Centre the CTA buttons */
+  .hero-actions {
+    justify-content: center;
+    gap: 10px;
+  }
+
+  /* KAWS character: below the text, smaller, centred */
+  .kaws-wrap {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    transform: none;
+    width: clamp(140px, 48vw, 220px);
+    margin: 0 auto;
+    /* push it to bottom of sticky area */
+    margin-top: auto;
+    z-index: 3;
+  }
+
+  /* Scroll hint: hide on mobile to reduce clutter */
+  .scroll-hint { display: none; }
+
+  /* FOREVER label: scale it down */
+  .forever-label-text {
+    font-size: clamp(44px, 16vw, 80px);
+  }
+
+  /* ── COLLECTIONS ── */
+  .collections-grid {
+    grid-template-columns: 1fr !important;
+    padding: 0 20px !important;
+  }
+
+  /* ── SHOP filters ── */
+  .filters { justify-content: center; }
+
+  /* ── STORY ── */
+  .story-inner {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 0 20px;
+    text-align: center;
+  }
+  .story-quote {
+    border-left: none;
+    border-top: 2px solid var(--gold);
+    padding-left: 0;
+    padding-top: 24px;
+    font-size: clamp(20px, 5vw, 28px);
+  }
+  .story-img { display: none; } /* hide editorial image on mobile to keep it clean */
+
+  /* ── FINDER ── */
+  .finder-inner { max-width: 100%; }
+  .finder-result-card { flex-direction: column; gap: 16px; }
+
+  /* ── JOIN ── */
+  .join-inner { padding: 0 20px; }
+  .join-form { flex-direction: column; }
+  .join-form .btn { width: 100%; justify-content: center; }
+
+  /* ── GLOBAL: center every standalone .btn not inside nav ── */
+  /* Sections that have lone CTA buttons */
+  .story .btn,
+  .join .btn,
+  .finder .btn {
+    display: flex;
+    margin: 0 auto;
+    width: fit-content;
+  }
+
+  /* ── FOOTER ── */
+  .footer-inner {
+    grid-template-columns: 1fr;
+    gap: 36px;
+    text-align: center;
+  }
+  .footer-socials { justify-content: center; }
+  .footer-links { grid-template-columns: 1fr 1fr; }
+  .footer-bottom { flex-direction: column; align-items: center; text-align: center; }
+
+  /* ── PRODUCT MODAL ── */
+  .modal-grid { grid-template-columns: 1fr; }
+  .modal-img { min-height: 260px; border-right: none; border-bottom: 1px solid var(--border); }
+  .modal-info { padding: 24px 20px; }
+  .modal-name { font-size: 28px; }
+
+  /* ── CART DRAWER ── */
+  .cart-drawer { width: 100vw; }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+  .hero-title { font-size: clamp(32px, 11vw, 44px); }
+  .kaws-wrap  { width: clamp(120px, 44vw, 180px); }
+  .products-grid { grid-template-columns: 1fr 1fr; gap: 1px; }
+  .btn { padding: 12px 22px; font-size: 9px; }
+}
