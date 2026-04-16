@@ -107,7 +107,7 @@ img { display: block; max-width: 100%; }
   position: fixed;
   inset: 0 0 auto 0;
   height: var(--nav-h);
-  z-index: 900;
+  z-index: 9999;
   transition: background .4s var(--ease), border-color .4s;
   border-bottom: 1px solid transparent;
 }
@@ -823,7 +823,8 @@ img { display: block; max-width: 100%; }
     text-align: center;
     width: 100%;
     max-width: 100%;
-    padding: 110px 24px 0;   /* clear the navbar */
+    /* calc: nav height + 24px breathing room */
+    padding: calc(var(--nav-h) + 24px) 24px 0;
     z-index: 2;
   }
 
