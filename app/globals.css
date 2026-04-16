@@ -798,41 +798,35 @@ img { display: block; max-width: 100%; }
 @media (max-width: 768px) {
 
   /* ── HERO ── */
-  /* Switch to a flex column so text sits above the character */
-  .hero-sticky {
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    /* canvas + overlay stay absolute behind everything */
-  }
+  /* Keep sticky container as-is — use absolute positioning for
+     precise placement so text and character never overlap        */
 
-  /* Reduce scroll canvas height on mobile — animation still works */
+  /* Reduce scroll canvas height on mobile */
   .hero-outer { height: 450vh; }
 
-  /* Full-screen dark overlay (no side-gradient on mobile) */
+  /* Full-screen dark overlay on mobile */
   .hero-overlay {
-    background: rgba(8,8,8,.60);
+    background: rgba(8,8,8,.65);
   }
 
-  /* Text block: top of screen, centred, full width */
+  /* Text block: pinned to the top, below the navbar */
   .hero-text {
-    position: relative;
-    top: auto;
-    left: auto;
+    position: absolute;
+    top: calc(var(--nav-h) + 20px);  /* sits just below navbar */
+    left: 0;
+    right: 0;
     transform: none;
     text-align: center;
-    width: 100%;
     max-width: 100%;
-    /* calc: nav height + 24px breathing room */
-    padding: calc(var(--nav-h) + 24px) 24px 0;
+    padding: 0 24px;
     z-index: 2;
   }
 
-  .hero-eyebrow { margin-bottom: 14px; }
+  .hero-eyebrow { margin-bottom: 10px; }
 
   .hero-title {
-    font-size: clamp(36px, 10vw, 56px);
-    margin-bottom: 28px;
+    font-size: clamp(32px, 9vw, 48px);
+    margin-bottom: 22px;
   }
 
   /* Centre the CTA buttons */
@@ -841,25 +835,22 @@ img { display: block; max-width: 100%; }
     gap: 10px;
   }
 
-  /* KAWS character: below the text, smaller, centred */
+  /* KAWS: pinned to bottom-centre, never overlaps text */
   .kaws-wrap {
-    position: relative;
-    bottom: auto;
-    left: auto;
-    transform: none;
-    width: clamp(140px, 48vw, 220px);
-    margin: 0 auto;
-    /* push it to bottom of sticky area */
-    margin-top: auto;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: clamp(130px, 44vw, 200px);
     z-index: 3;
   }
 
-  /* Scroll hint: hide on mobile to reduce clutter */
+  /* Scroll hint: hide on mobile */
   .scroll-hint { display: none; }
 
-  /* FOREVER label: scale it down */
+  /* FOREVER label: scale down for mobile */
   .forever-label-text {
-    font-size: clamp(44px, 16vw, 80px);
+    font-size: clamp(40px, 14vw, 72px);
   }
 
   /* ── COLLECTIONS ── */
