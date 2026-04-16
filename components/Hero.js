@@ -23,6 +23,7 @@ export default function Hero() {
     let ctx;
 
     async function init() {
+      try {
       const { gsap } = await import('gsap');
       const { ScrollTrigger } = await import('gsap/ScrollTrigger');
       gsap.registerPlugin(ScrollTrigger);
@@ -39,7 +40,8 @@ export default function Hero() {
         const label    = labelRef.current;
         const heroText = textRef.current;
 
-        if (!kaws) return;
+        // Guard: if any critical ref is missing, bail out safely
+        if (!kaws || !sLegs || !stLegs || !wLegs || !hoodie || !armsUp || !armsDown || !label || !heroText) return;
 
         /* ─────────────────────────────────────────────────────────
            Master timeline — pinned to hero-outer scroll canvas
@@ -122,6 +124,9 @@ export default function Hero() {
         tl.to(label, { opacity: 0, duration: 0.10 }, 0.90);
         tl.to(kaws,  { opacity: 0, duration: 0.10 }, 0.90);
       });
+      } catch (err) {
+        console.warn('FOREVER hero animation failed to init:', err);
+      }
     }
 
     init();
