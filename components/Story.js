@@ -1,30 +1,16 @@
 'use client';
 import Image from 'next/image';
-import { useEffect, useRef } from 'react';
-
-const FOG = 'https://fearofgod.com/cdn/shop/files';
 
 export default function Story() {
-  const ref = useRef(null);
-
-  useEffect(() => {
-    const obs = new IntersectionObserver(
-      (entries) => entries.forEach((e) => { if (e.isIntersecting) e.target.classList.add('in-view'); }),
-      { threshold: 0.12 }
-    );
-    ref.current?.querySelectorAll('.reveal').forEach((el) => obs.observe(el));
-    return () => obs.disconnect();
-  }, []);
-
   return (
-    <section className="story" id="story" ref={ref}>
+    <section className="story" id="story">
       <div className="story-inner">
         {/* Editorial image */}
         <div className="story-img reveal">
           <Image
-            src={`${FOG}/LOOK_36_26241979-d8f6-4a59-81bf-798c81a576b9.jpg`}
+            src="/story2.png"
             alt="FOREVER brand editorial"
-            width={700} height={900}
+            width={1400} height={1867}
             style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'brightness(.72)' }}
           />
         </div>
@@ -52,8 +38,8 @@ export default function Story() {
               but to be remembered.
             </p>
           </div>
-          <a href="#shop" className="btn btn-primary reveal reveal-delay-3">
-            Shop the Collection
+          <a href="/shop" className="btn btn-primary reveal reveal-delay-3">
+            Open the Catalogue
           </a>
         </div>
       </div>

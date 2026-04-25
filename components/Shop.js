@@ -20,13 +20,13 @@ function CategoryBlock({ category, items, onQuickView, onToast, onAdd }) {
 
   return (
     <div className="cat-block">
-      <div className="cat-head">
+      <div className="cat-head reveal reveal-up">
         <span className="cat-num">{meta.num}</span>
         <span className="cat-name">{meta.label}</span>
         <span className="cat-count">{items.length} styles</span>
       </div>
 
-      <div className="editorial">
+      <div className="editorial reveal reveal-blur">
         {/* Feature — model card */}
         <div
           className="ed-feature"
@@ -109,7 +109,7 @@ function CategoryBlock({ category, items, onQuickView, onToast, onAdd }) {
       )}
 
       {/* Remaining items grid */}
-      <div className="cat-grid">
+      <div className="cat-grid reveal-stagger reveal">
         {rest.map((p) => (
           <ProductCard
             key={p.id}
@@ -183,7 +183,7 @@ export default function Shop() {
       {/* ── EMBRACE THE JOURNEY ────────────────────────────── */}
       <section className="shop journey" id="shop">
         <div className="container">
-          <div className="journey-head">
+          <div className="journey-head reveal reveal-stagger">
             <span className="label">/ Drop 03 — SS26</span>
             <h2 className="section-title">Embrace the Journey</h2>
             <p className="journey-sub">
@@ -218,7 +218,7 @@ export default function Shop() {
       {/* ── THE BEGINNING — ARCHIVE ────────────────────────── */}
       <section className="archive" id="archive">
         <div className="container">
-          <div className="archive-head">
+          <div className="archive-head reveal reveal-stagger">
             <span className="label archive-label">/ Archive — Drop 01</span>
             <h2 className="section-title archive-title">The Beginning</h2>
             <p className="archive-intro">
@@ -226,7 +226,7 @@ export default function Shop() {
             </p>
           </div>
 
-          <div className="archive-grid">
+          <div className="archive-grid reveal-stagger reveal">
             {grouped.beginning.map((p) => (
               <ArchiveCard key={p.id} product={p} onQuickView={setModal} />
             ))}

@@ -30,10 +30,10 @@ export default function Nav({ onCartOpen }) {
   };
 
   const links = [
-    { label: 'Shop All',    href: '#shop' },
-    { label: 'Archive',     href: '#archive' },
-    { label: 'Our Story',   href: '#story' },
-    { label: 'Contact',     href: '#join' },
+    { label: 'Catalogue', href: '/shop' },
+    { label: 'Archive',   href: '/shop#archive' },
+    { label: 'Our Story', href: '/#story' },
+    { label: 'Contact',   href: '/#join' },
   ];
 
   return (

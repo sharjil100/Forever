@@ -1,8 +1,23 @@
 'use client';
+import Image from 'next/image';
 
 export default function Hero() {
   return (
     <section className="hero">
+      {/* Background photo — Next.js will serve WebP/AVIF at the right size per device */}
+      <div className="hero-bg">
+        <Image
+          src="/Hero5.png"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          quality={88}
+          style={{ objectFit: 'cover', objectPosition: 'center' }}
+        />
+      </div>
+      <div className="hero-overlay" aria-hidden="true" />
+
       <div className="hero-inner">
 
         {/* LEFT COLUMN */}
@@ -26,10 +41,8 @@ export default function Hero() {
           <span className="hero-collection">New<br />Collection 2026</span>
         </div>
 
-        {/* CENTER MODEL */}
-        <div className="hero-col hero-col-center">
-          <img src="/hero3.png" alt="FOREVER — New Collection 2026" className="hero-model" />
-        </div>
+        {/* CENTER — left empty so the bg model shows through */}
+        <div className="hero-col hero-col-center" aria-hidden="true" />
 
         {/* RIGHT COLUMN */}
         <div className="hero-col hero-col-right">
