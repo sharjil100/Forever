@@ -3,7 +3,6 @@ import { useState } from 'react';
 import Nav          from '@/components/Nav';
 import Hero         from '@/components/Hero';
 import Marquee      from '@/components/Marquee';
-import Collections  from '@/components/Collections';
 import Shop         from '@/components/Shop';
 import Story        from '@/components/Story';
 import FragranceFinder from '@/components/FragranceFinder';
@@ -19,7 +18,6 @@ export default function Page() {
       <Nav onCartOpen={() => setCartOpen(true)} />
       <Hero />
       <Marquee />
-      <Collections />
       <Shop />
       <Story />
       <FragranceFinder />
