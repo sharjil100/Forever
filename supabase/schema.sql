@@ -133,11 +133,11 @@ revoke all on function public.set_order_status(bigint, text) from public, anon, 
 grant execute on function public.place_order(jsonb, jsonb) to service_role;
 grant execute on function public.set_order_status(bigint, text) to service_role;
 
--- Opening stock (counted 19 Nov 2026, minus the 5 hoodie orders taken on 20 Nov).
+-- Opening stock (counted 19 Nov 2026).
 -- Only inserted on the first run; after that, manage quantities in /admin/stock.
 insert into public.stock (slug, size, qty) values
-  ('hoodie-steel-grey',       'XL', 8), ('hoodie-steel-grey',       'L', 17), ('hoodie-steel-grey',       'M', 0),
-  ('hoodie-cherry-wood',      'XL', 8), ('hoodie-cherry-wood',      'L', 15), ('hoodie-cherry-wood',      'M', 1),
+  ('hoodie-steel-grey',       'XL', 9), ('hoodie-steel-grey',       'L', 18), ('hoodie-steel-grey',       'M', 0),
+  ('hoodie-cherry-wood',      'XL', 8), ('hoodie-cherry-wood',      'L', 15), ('hoodie-cherry-wood',      'M', 2),
   ('hoodie-fossil',           'XL', 7), ('hoodie-fossil',           'L', 14), ('hoodie-fossil',           'M', 0),
   ('hoodie-undying-black',    'XL', 7), ('hoodie-undying-black',    'L', 12), ('hoodie-undying-black',    'M', 2),
   ('sweatpant-steel-grey',    'XL', 1), ('sweatpant-steel-grey',    'L', 7),  ('sweatpant-steel-grey',    'M', 5),
