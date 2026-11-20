@@ -1,221 +1,118 @@
-// All images from Fear of God Essentials CDN — used as placeholders.
-// Replace with your own assets per the spec at the bottom of this file.
-const FOG = 'https://fearofgod.com/cdn/shop/files';
+// Product catalogue. Images live in /public/images/products/<slug>/1.jpg, 2.jpg, ...
+// 1.jpg is the card image, 2.jpg shows on hover, the rest fill the product page gallery.
 
-const HOODIE_MODEL = `${FOG}/192SP264462F_TRAINING_90S_HOODIE-FADED_DUNE_1_x800.jpg`;
-const HOODIE_FRONT = `${FOG}/192SP265542FW_CLASSIC_HOODIE-VINTAGE_BLACK_1_b54db34e-9f44-49c9-b929-c110f4cbe758_x600.jpg`;
-const HOODIE_BACK  = `${FOG}/192SP265072FW_CLASSIC_FULL_ZIP_HOODIE-VINTAGE_BLACK_2_x800.jpg`;
-const SPORT_HOODIE = `${FOG}/RW00186-006_US_BASEBALL_SPORT_HOODIE-DARK_SAPPHIRE_1_x600.jpg`;
-
-const TEE_FRONT    = `${FOG}/125SP264411F_SIGNATURE_90S_SHORT_SLEEVE_TEE-VINTAGE_BLACK_1_x600.jpg`;
-const TEE_OAT      = `${FOG}/RW00184-0132_US_BASEBALL_MERCH_TEE-OAT_1_x800.jpg`;
-const POLO_BLACK   = `${FOG}/192SP264911F_SIGNATURE_90S_KNIT_POLO-VINTAGE_BLACK_1_x600.jpg`;
-
-const PANT_SEAL    = `${FOG}/130SP268653F_TRAINING_CLASSIC_FIT_FLARE_SWEATPANT-FADED_SEAL_1_x800.jpg`;
-const PANT_BLACK   = `${FOG}/130SP268651F_TRAINING_CLASSIC_FIT_FLARE_SWEATPANT-FADED_BLACK_1_x600.jpg`;
-const PANT_PIPING  = `${FOG}/130SP265701FW_WOMENS_SIGNATURE_RELAXED_PANT_WITH_PIPING-VINTAGE_BLACK_2_x800.jpg`;
-
-export const products = [
-  // ── EMBRACE THE JOURNEY — HOODIES (4) ───────────────────────────
-  {
-    id: 1, collection: 'embrace', category: 'hoodies',
-    name: 'FOREVER HOODIE', subtitle: 'Heavyweight Fleece',
-    description: 'The one you reach for every time.',
-    longDescription: 'Built from 14oz brushed fleece. Dropped shoulders. Oversized fit. The kind of hoodie that becomes part of how people remember you.',
-    price: 168, originalPrice: null,
-    size: 'S / M / L / XL / XXL', colorway: 'Vintage Black', inStock: true,
-    image: HOODIE_MODEL, hoverImage: HOODIE_FRONT, modelImage: HOODIE_MODEL,
-  },
-  {
-    id: 2, collection: 'embrace', category: 'hoodies',
-    name: 'FOREVER HOODIE', subtitle: 'Classic Pullover',
-    description: 'Clean. Heavy. Built to last.',
-    longDescription: 'A clean pullover silhouette with no excess. Heavyweight cotton-poly fleece, kangaroo pocket, and a fit that works whether you are standing still or in motion.',
-    price: 158, originalPrice: null,
-    size: 'S / M / L / XL / XXL', colorway: 'Dark Sapphire', inStock: true,
-    image: HOODIE_FRONT, hoverImage: SPORT_HOODIE,
-  },
-  {
-    id: 3, collection: 'embrace', category: 'hoodies',
-    name: 'FOREVER ZIP HOODIE', subtitle: 'Full Zip',
-    description: 'The one you never take off.',
-    longDescription: 'Garment-dyed after construction. Full-length YKK zip. A heavyweight shell that breaks in better with every wear.',
-    price: 178, originalPrice: null,
-    size: 'S / M / L / XL / XXL', colorway: 'Faded Seal', inStock: true,
-    image: HOODIE_BACK, hoverImage: HOODIE_MODEL,
-  },
-  {
-    id: 4, collection: 'embrace', category: 'hoodies',
-    name: 'SPORT HOODIE', subtitle: 'Athletic Fleece',
-    description: 'Performance. Without the compromise.',
-    longDescription: 'A sport-weight hoodie with athletic proportions. Moisture-managing fleece, ribbed cuffs, and a cut that moves.',
-    price: 165, originalPrice: 195,
-    size: 'S / M / L / XL', colorway: 'Oat', inStock: true,
-    image: SPORT_HOODIE, hoverImage: HOODIE_FRONT,
-  },
-
-  // ── EMBRACE THE JOURNEY — T-SHIRTS (5 color variants) ───────────
-  {
-    id: 5, collection: 'embrace', category: 'tshirts',
-    name: 'OVERSIZED TEE', subtitle: '240gsm Boxy Fit',
-    description: 'Worn loose. Worn often.',
-    longDescription: 'A 240gsm cotton jersey tee. Boxy fit. Dropped hem. Five colorways — same cut, different mood.',
-    price: 68, originalPrice: null,
-    size: 'XS / S / M / L / XL / XXL', colorway: 'Vintage Black', colorHex: '#1a1a1a',
-    inStock: true, image: TEE_FRONT, hoverImage: TEE_OAT, modelImage: TEE_FRONT,
-  },
-  {
-    id: 6, collection: 'embrace', category: 'tshirts',
-    name: 'OVERSIZED TEE', subtitle: '240gsm Boxy Fit',
-    description: 'Worn loose. Worn often.',
-    longDescription: 'A 240gsm cotton jersey tee. Boxy fit. Dropped hem.',
-    price: 68, originalPrice: null,
-    size: 'XS / S / M / L / XL / XXL', colorway: 'Oat', colorHex: '#d8c9a8',
-    inStock: true, image: TEE_OAT, hoverImage: TEE_FRONT,
-  },
-  {
-    id: 7, collection: 'embrace', category: 'tshirts',
-    name: 'OVERSIZED TEE', subtitle: '240gsm Boxy Fit',
-    description: 'Worn loose. Worn often.',
-    longDescription: 'A 240gsm cotton jersey tee. Boxy fit. Dropped hem.',
-    price: 68, originalPrice: null,
-    size: 'XS / S / M / L / XL / XXL', colorway: 'Faded Seal', colorHex: '#5a5751',
-    inStock: true, image: POLO_BLACK, hoverImage: TEE_FRONT,
-  },
-  {
-    id: 8, collection: 'embrace', category: 'tshirts',
-    name: 'OVERSIZED TEE', subtitle: '240gsm Boxy Fit',
-    description: 'Worn loose. Worn often.',
-    longDescription: 'A 240gsm cotton jersey tee. Boxy fit. Dropped hem.',
-    price: 68, originalPrice: null,
-    size: 'XS / S / M / L / XL / XXL', colorway: 'Bone', colorHex: '#e8dfcf',
-    inStock: true, image: TEE_OAT, hoverImage: POLO_BLACK,
-  },
-  {
-    id: 9, collection: 'embrace', category: 'tshirts',
-    name: 'OVERSIZED TEE', subtitle: '240gsm Boxy Fit',
-    description: 'Worn loose. Worn often.',
-    longDescription: 'A 240gsm cotton jersey tee. Boxy fit. Dropped hem.',
-    price: 68, originalPrice: null,
-    size: 'XS / S / M / L / XL / XXL', colorway: 'Olive Drab', colorHex: '#5a5a3a',
-    inStock: true, image: TEE_FRONT, hoverImage: TEE_OAT,
-  },
-
-  // ── EMBRACE THE JOURNEY — SWEATPANTS (4) ────────────────────────
-  {
-    id: 10, collection: 'embrace', category: 'sweatpants',
-    name: 'FOREVER SWEATPANT', subtitle: 'Classic Flare',
-    description: 'The bottom half of the answer.',
-    longDescription: 'A flared-leg sweatpant cut from heavyweight fleece. High-rise, elastic waistband, side-seam pockets.',
-    price: 148, originalPrice: null,
-    size: 'XS / S / M / L / XL / XXL', colorway: 'Faded Seal', inStock: true,
-    image: PANT_SEAL, hoverImage: PANT_BLACK, modelImage: PANT_SEAL,
-  },
-  {
-    id: 11, collection: 'embrace', category: 'sweatpants',
-    name: 'FOREVER SWEATPANT', subtitle: 'Relaxed Fit',
-    description: 'Unbothered. All the way down.',
-    longDescription: 'A tapered relaxed sweatpant in garment-dyed fleece. Substantial without heaviness.',
-    price: 148, originalPrice: null,
-    size: 'XS / S / M / L / XL', colorway: 'Faded Black', inStock: true,
-    image: PANT_BLACK, hoverImage: PANT_SEAL,
-  },
-  {
-    id: 12, collection: 'embrace', category: 'sweatpants',
-    name: 'SIGNATURE PANT', subtitle: 'With Piping',
-    description: 'A detail that earns its place.',
-    longDescription: 'A signature relaxed pant with contrast piping along the outseam. Heavy fleece, clean drape.',
-    price: 158, originalPrice: 185,
-    size: 'XS / S / M / L / XL', colorway: 'Vintage Black', inStock: true,
-    image: PANT_PIPING, hoverImage: PANT_BLACK,
-  },
-  {
-    id: 13, collection: 'embrace', category: 'sweatpants',
-    name: 'TRACK PANT', subtitle: 'Tapered',
-    description: 'Built for movement.',
-    longDescription: 'A tapered track pant with elastic ankle, hidden side pockets, and ribbed waistband.',
-    price: 138, originalPrice: null,
-    size: 'XS / S / M / L / XL', colorway: 'Stone', inStock: true,
-    image: PANT_SEAL, hoverImage: PANT_PIPING,
-  },
-
-  // ── THE BEGINNING — ARCHIVE HOODIES (3, all sold out) ───────────
-  {
-    id: 101, collection: 'beginning', category: 'hoodies',
-    name: 'DROP 01 HOODIE', subtitle: 'Original Run',
-    description: 'Where it started.',
-    longDescription: 'The hoodie that started it all. 12oz fleece, raglan sleeves, original FOREVER tag. Limited to 200 units.',
-    price: 220, originalPrice: null,
-    size: 'M / L', colorway: 'Vintage Cream', inStock: false,
-    image: HOODIE_MODEL, hoverImage: HOODIE_FRONT,
-  },
-  {
-    id: 102, collection: 'beginning', category: 'hoodies',
-    name: 'CHARTER HOODIE', subtitle: 'Founders Edition',
-    description: 'Worn by the first.',
-    longDescription: 'The Founders Edition hoodie. Embroidered tonal logo, garment-washed for vintage hand-feel.',
-    price: 245, originalPrice: null,
-    size: 'L', colorway: 'Faded Black', inStock: false,
-    image: HOODIE_FRONT, hoverImage: SPORT_HOODIE,
-  },
-  {
-    id: 103, collection: 'beginning', category: 'hoodies',
-    name: 'PROTOTYPE HOODIE', subtitle: 'Sample Run',
-    description: 'The one that almost was.',
-    longDescription: 'A pre-production sample with hand-stitched pockets. Never offered again. Six units made.',
-    price: 320, originalPrice: null,
-    size: 'M', colorway: 'Faded Olive', inStock: false,
-    image: HOODIE_BACK, hoverImage: HOODIE_MODEL,
-  },
-];
-
-export const collections = [
-  {
-    id: 'hoodies', label: 'Hoodies', name: 'The Outer Layer',
-    desc: 'Heavyweight fleece. Dropped shoulders. The piece you never take off.',
-    image: HOODIE_MODEL,
-  },
-  {
-    id: 'tshirts', label: 'T-Shirts', name: 'The Foundation',
-    desc: 'Nothing extra. 240gsm cotton. The base of every outfit worth wearing.',
-    image: TEE_FRONT,
-  },
-  {
-    id: 'sweatpants', label: 'Sweatpants', name: 'The Bottom Half',
-    desc: 'An outfit, not an afterthought. Heavyweight fleece, clean silhouette.',
-    image: PANT_SEAL,
-  },
-];
-
-// Style finder matrix — [q1: time][q2: vibe] → product index
-export const finderMatrix = {
-  morning: { clean: 3, bold: 4, quiet: 0 },
-  evening: { clean: 6, bold: 1, quiet: 9 },
-  always:  { clean: 0, bold: 4, quiet: 11 },
+// family = which colours go together, used for "Complete the Look"
+export const COLORS = {
+  // hoodies + sweatpants
+  'undying-black': { name: 'Undying Black', hex: '#161616', family: 'black' },
+  'steel-grey':    { name: 'Steel Grey',    hex: '#5d5f63', family: 'grey' },
+  'fossil':        { name: 'Fossil',        hex: '#8b7b74', family: 'light' },
+  'cherry-wood':   { name: 'Cherry Wood',   hex: '#7b4a2d', family: 'brown' },
+  // t-shirts
+  'obsidian':      { name: 'Obsidian',      hex: '#121212', family: 'black' },
+  'asphalt':       { name: 'Asphalt',       hex: '#5c5f6b', family: 'grey' },
+  'bare-minimum':  { name: 'Bare Minimum',  hex: '#a88a8c', family: 'light' },
+  'mocha':         { name: 'Mocha',         hex: '#5e2f20', family: 'brown' },
+  'rust':          { name: 'Rust',          hex: '#b4503c', family: 'rust' },
 };
 
-/* ───────────────────────────────────────────────────────────────
-   IMAGE SPEC (public/products/)
+export const CATEGORIES = [
+  { id: 'hoodies',    label: 'Hoodies',    tile: '/images/tiles/hoodies.jpg' },
+  { id: 'sweatpants', label: 'Sweatpants', tile: '/images/tiles/sweatpants.jpg' },
+  { id: 'tshirts',    label: 'T-Shirts',   tile: '/images/tiles/tshirts.jpg' },
+];
 
-   For each garment, ship 3 images on a transparent or pure-white
-   background, named consistently:
+const SET_COLORS = ['undying-black', 'steel-grey', 'fossil', 'cherry-wood'];
 
-     /products/{slug}-model.png   →  one full-body model shot
-                                     1200 × 1500 px, transparent bg
-                                     (cropped at hips for tops, at
-                                     mid-shin for pants)
+const LINES = {
+  hoodies: {
+    base: 'hoodie',
+    name: 'Heavyweight Hoodie',
+    price: 1200,
+    was: 2000,
+    colors: SET_COLORS,
+    sizes: ['M', 'L', 'XL'],
+    // measurements in inches, from the brand size charts (size-charts/ folder)
+    sizeChart: {
+      columns: ['Chest', 'Shoulder', 'Length', 'Sleeve'],
+      rows: { M: [50, 27, 27.5, 24], L: [52, 28, 28.5, 24], XL: [54, 29, 29.5, 24] },
+    },
+    description:
+      'A heavyweight fleece hoodie with a relaxed, oversized fit and dropped shoulders. Tonal FRVR logo on the chest and a raised "Embrace The Journey" print across the back.',
+    details: ['Heavyweight fleece', 'Oversized fit, dropped shoulders', 'Tonal FRVR chest logo', '"Embrace The Journey" back print', 'Pairs with the matching sweatpant'],
+  },
+  sweatpants: {
+    base: 'sweatpant',
+    name: 'Heavyweight Sweatpant',
+    price: 720,
+    was: 1200,
+    colors: SET_COLORS,
+    sizes: ['M', 'L', 'XL'],
+    sizeChart: {
+      columns: ['Waist', 'Length'],
+      rows: { M: ['30–32', 41], L: ['33–35', 42], XL: ['36–38', 43] },
+    },
+    description:
+      'A heavyweight fleece sweatpant with a relaxed straight leg and a drawstring waist. Finished with a tonal "Embrace The Journey" print on the thigh and a woven patch on the back pocket.',
+    details: ['Heavyweight fleece', 'Relaxed straight leg', 'Elastic drawstring waist', 'Side and back pockets', 'Pairs with the matching hoodie'],
+  },
+  tshirts: {
+    base: 'tee',
+    name: 'Oversized Tee',
+    price: 600,
+    was: 1000,
+    colors: ['obsidian', 'asphalt', 'rust', 'bare-minimum', 'mocha'],
+    sizes: ['S', 'M', 'L', 'XL'],
+    sizeChart: {
+      columns: ['Chest', 'Length'],
+      rows: { S: [42, 25], M: [44, 26], L: [46, 27], XL: [48, 28] },
+    },
+    outLabel: 'Available Soon',   // shown when stock is 0 (tees not counted yet)
+    description:
+      'A boxy, oversized tee with dropped shoulders and a heavyweight feel. Tonal "Embrace The Journey" print across the back with a woven label above it.',
+    details: ['Heavyweight cotton feel', 'Boxy oversized fit', 'Dropped shoulders', '"Embrace The Journey" back print', 'Unisex'],
+  },
+};
 
-     /products/{slug}-front.png   →  flat-lay product front view
-                                     1000 × 1000 px, transparent bg
+// how many gallery images exist per product folder
+const IMAGE_COUNT = {
+  'hoodie-undying-black': 5, 'hoodie-steel-grey': 4, 'hoodie-fossil': 5, 'hoodie-cherry-wood': 5,
+  'sweatpant-undying-black': 4, 'sweatpant-steel-grey': 3, 'sweatpant-fossil': 4, 'sweatpant-cherry-wood': 5,
+  'tee-obsidian': 5, 'tee-asphalt': 5, 'tee-rust': 2, 'tee-bare-minimum': 5, 'tee-mocha': 4,
+};
 
-     /products/{slug}-back.png    →  flat-lay product back view
-                                     1000 × 1000 px, transparent bg
+export const products = Object.entries(LINES).flatMap(([category, line]) =>
+  line.colors.map((color) => {
+    const slug = `${line.base}-${color}`;
+    const images = Array.from({ length: IMAGE_COUNT[slug] }, (_, i) => `/images/products/${slug}/${i + 1}.jpg`);
+    return {
+      slug,
+      category,
+      name: line.name,
+      color,
+      colorName: COLORS[color].name,
+      colorHex: COLORS[color].hex,
+      family: COLORS[color].family,
+      price: line.price,
+      was: line.was,
+      discount: Math.round((1 - line.price / line.was) * 100),
+      sizes: line.sizes,
+      outLabel: line.outLabel || 'Sold Out',
+      sizeChart: line.sizeChart,
+      description: line.description,
+      details: line.details,
+      images,
+    };
+  })
+);
 
-   For the 5 T-SHIRT colors, ship one front + one back per color:
-     /products/tee-{color}-front.png   1000 × 1000 px
-     /products/tee-{color}-back.png    1000 × 1000 px
-   And ONE model shot wearing any single color (re-used as the
-   feature image for the tees row).
+export const getProduct = (slug) => products.find((p) => p.slug === slug);
+export const byCategory = (category) => products.filter((p) => p.category === category);
 
-   Keep file size < 250 KB each (use TinyPNG / WebP if possible).
-   ─────────────────────────────────────────────────────────────── */
+// other categories, same colour family first, then fill up to 4
+export function completeTheLook(product) {
+  const others = products.filter((p) => p.category !== product.category);
+  const match = others.filter((p) => p.family === product.family);
+  const rest = others.filter((p) => p.family !== product.family);
+  return [...match, ...rest].slice(0, 4);
+}

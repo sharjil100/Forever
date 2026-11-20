@@ -1,66 +1,32 @@
-'use client';
 import Image from 'next/image';
-import { useState } from 'react';
-import { useCart } from '@/context/CartContext';
+import { formatPrice } from '@/data/site';
+import StockTag from './StockTag';
 
-const RATINGS = [4.5, 4.3, 4.8, 4.2, 4.6, 4.7, 4.4, 4.9, 4.1, 4.5, 4.3, 4.7];
-
-export default function ProductCard({ product, onQuickView, onToast }) {
-  const { dispatch } = useCart();
-  const [hovered, setHovered] = useState(false);
-
-  const rating = RATINGS[product.id % RATINGS.length];
-  const imgSrc = hovered && product.hoverImage ? product.hoverImage : product.image;
-
-  function handleAdd(e) {
-    e.stopPropagation();
-    if (!product.inStock) return;
-    dispatch({ type: 'ADD', item: product });
-    onToast(`${product.name} added to cart`);
-  }
-
+export default function ProductCard({ product, priority = false }) {
+  const [main, hover] = product.images;
   return (
-    <div
-      className="product-card"
-      onClick={() => onQuickView(product)}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-    >
-      {/* Oval image container */}
-      <div className="pc-visual">
-        <Image
-          src={imgSrc}
-          alt={product.name}
-          fill
-          sizes="(max-width:480px) 50vw, (max-width:768px) 50vw, 25vw"
-          style={{ objectFit: 'contain', transition: 'opacity .4s' }}
-        />
-        {product.originalPrice && <span className="pc-badge">Sale</span>}
-        {!product.inStock      && <span className="pc-badge-out">Sold Out</span>}
-        <button
-          className={`pc-add${!product.inStock ? ' disabled' : ''}`}
-          onClick={handleAdd}
-        >
-          {product.inStock ? 'Quick Add' : 'Sold Out'}
-        </button>
+    <a href={`/product/${product.slug}`} className="card">
+      <div className="card-media">
+        <Image src={main} alt={`${product.name} — ${product.colorName}`} fill priority={priority}
+          sizes="(max-width: 767px) 50vw, 25vw" className="card-img" />
+        {hover && (
+          <Image src={hover} alt="" fill sizes="(max-width: 767px) 50vw, 25vw" className="card-img card-img-hover" />
+        )}
+        <span className="tag">Sale</span>
+        <StockTag slug={product.slug} sizes={product.sizes} label={product.outLabel} />
       </div>
-
-      {/* Info row */}
-      <div className="pc-info">
-        <h3 className="pc-name">{product.name}</h3>
-        <div className="pc-bottom">
-          <div>
-            <span className="pc-price">${product.price}</span>
-            {product.originalPrice && (
-              <span className="pc-original">${product.originalPrice}</span>
-            )}
-          </div>
-          <div className="pc-stars">
-            <span className="pc-stars-icon">★</span>
-            <span className="pc-stars-num">{rating}</span>
-          </div>
+      <div className="card-info">
+        <h3 className="card-name">{product.name}</h3>
+        <div className="card-color">
+          <span className="dot" style={{ background: product.colorHex }} />
+          {product.colorName}
+        </div>
+        <div className="price">
+          <s>{formatPrice(product.was)}</s>
+          <b>{formatPrice(product.price)}</b>
+          <em>−{product.discount}%</em>
         </div>
       </div>
-    </div>
+    </a>
   );
 }

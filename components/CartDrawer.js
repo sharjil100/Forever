@@ -1,93 +1,67 @@
 'use client';
 import Image from 'next/image';
 import { useCart } from '@/context/CartContext';
+import { site, formatPrice } from '@/data/site';
 
-export default function CartDrawer({ open, onClose }) {
-  const { items, dispatch, subtotal, shipping, grandTotal } = useCart();
-
-  const remaining = 200 - subtotal;
+export default function CartDrawer() {
+  const { items, dispatch, subtotal, savings, isOpen, closeCart } = useCart();
 
   return (
     <>
-      <div className={`cart-bg${open ? ' open' : ''}`} onClick={onClose} />
-
-      <aside className={`cart-drawer${open ? ' open' : ''}`}>
-        {/* Header */}
-        <div className="cart-head">
-          <h2 className="cart-title">Your Cart</h2>
-          <button className="cart-close" onClick={onClose}>✕</button>
+      <div className={`scrim${isOpen ? ' open' : ''}`} onClick={closeCart} />
+      <aside className={`cart-drawer${isOpen ? ' open' : ''}`} aria-hidden={!isOpen} aria-label="Your bag">
+        <div className="drawer-head">
+          <h2 className="drawer-title">Your Bag {items.length > 0 && <span>({items.reduce((s, i) => s + i.qty, 0)})</span>}</h2>
+          <button className="icon-btn" onClick={closeCart} aria-label="Close bag">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><path d="M6 6l12 12M18 6L6 18" /></svg>
+          </button>
         </div>
 
-        {/* Items */}
-        <div className="cart-items">
-          {items.length === 0 ? (
-            <div className="cart-empty-state">
-              <div className="cart-empty-glyph">∅</div>
-              <p>Your cart is empty.</p>
-              <a href="#shop" className="btn btn-ghost" onClick={onClose}
-                style={{ marginTop: 8 }}>
-                Explore Collection
-              </a>
-            </div>
-          ) : (
-            items.map((item) => (
-              <div className="cart-item" key={item.id}>
-                <div className="ci-img" style={{ position: 'relative', width: 68, height: 86 }}>
-                  <Image src={item.image} alt={item.name} fill
-                    style={{ objectFit: 'cover' }} sizes="68px" />
-                </div>
-                <div className="ci-info">
-                  <div className="ci-name">{item.name}</div>
-                  <div className="ci-size">{item.size}</div>
-                  <div className="ci-qty">
-                    <button className="ci-qty-btn"
-                      onClick={() => dispatch({ type: 'DEC', id: item.id })}>−</button>
-                    <span className="ci-qty-num">{item.qty}</span>
-                    <button className="ci-qty-btn"
-                      onClick={() => dispatch({ type: 'INC', id: item.id })}>+</button>
+        {items.length === 0 ? (
+          <div className="cart-empty">
+            <p>Your bag is empty.</p>
+            <a href="/shop" className="btn btn-dark" onClick={closeCart}>Shop the sale</a>
+          </div>
+        ) : (
+          <>
+            <div className="cart-items">
+              {items.map((i) => (
+                <div className="cart-item" key={i.key}>
+                  <a href={`/product/${i.slug}`} className="ci-img" onClick={closeCart}>
+                    <Image src={i.image} alt={`${i.name} ${i.colorName}`} fill sizes="88px" style={{ objectFit: 'cover' }} />
+                  </a>
+                  <div className="ci-info">
+                    <div className="ci-top">
+                      <a href={`/product/${i.slug}`} className="ci-name" onClick={closeCart}>{i.name}</a>
+                      <button className="ci-remove" onClick={() => dispatch({ type: 'REMOVE', key: i.key })}>Remove</button>
+                    </div>
+                    <div className="ci-meta">{i.colorName} · Size {i.size}</div>
+                    <div className="ci-bottom">
+                      <div className="qty">
+                        <button onClick={() => dispatch({ type: 'DEC', key: i.key })} aria-label="Decrease quantity">−</button>
+                        <span>{i.qty}</span>
+                        <button onClick={() => dispatch({ type: 'INC', key: i.key })} aria-label="Increase quantity">+</button>
+                      </div>
+                      <div className="price">
+                        <s>{formatPrice(i.was * i.qty)}</s>
+                        <b>{formatPrice(i.price * i.qty)}</b>
+                      </div>
+                    </div>
                   </div>
                 </div>
-                <div className="ci-right">
-                  <span className="ci-price">${(item.price * item.qty).toFixed(0)}</span>
-                  <button className="ci-remove"
-                    onClick={() => dispatch({ type: 'REMOVE', id: item.id })}>
-                    Remove
-                  </button>
-                </div>
-              </div>
-            ))
-          )}
-        </div>
-
-        {/* Footer totals — only when cart has items */}
-        {items.length > 0 && (
-          <div className="cart-foot">
-            <div className="cart-totals">
-              <div className="cart-row">
-                <span>Subtotal</span>
-                <span>${subtotal.toFixed(0)}</span>
-              </div>
-              <div className="cart-row">
-                <span>Shipping</span>
-                <span>{shipping === 0 ? 'Free' : `$${shipping}`}</span>
-              </div>
-              <div className="cart-row-total">
-                <span>Total</span>
-                <span>${grandTotal.toFixed(0)}</span>
-              </div>
+              ))}
             </div>
 
-            <p className="cart-note">
-              {remaining > 0
-                ? `Add $${remaining.toFixed(0)} more for free shipping`
-                : '✓ Free shipping applied'}
-            </p>
-
-            <button className="btn btn-primary btn-full">
-              Proceed to Checkout
-            </button>
-            <p className="cart-secure">🔒 Secure checkout</p>
-          </div>
+            <div className="cart-foot">
+              <div className="cart-row"><span>You save</span><span className="save">−{formatPrice(savings)}</span></div>
+              <div className="cart-row cart-total"><span>Subtotal</span><span>{formatPrice(subtotal)}</span></div>
+              <p className="cart-small">Cash on delivery · Delivery charge added at checkout</p>
+              <a href="/checkout" className="btn btn-dark btn-full" onClick={closeCart}>Checkout</a>
+              {site.messengerUrl && (
+                <a href={site.messengerUrl} target="_blank" rel="noopener noreferrer" className="cart-alt">Prefer to order on Messenger?</a>
+              )}
+            </div>
+          </>
         )}
       </aside>
     </>
